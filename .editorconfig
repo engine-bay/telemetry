@@ -16,6 +16,9 @@ dotnet_diagnostic.SA1648.severity = silent
 # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1303
 dotnet_diagnostic.CA1303.severity = silent
 
+# NU5104: A number of the open telemetry nuget packages are pre-release still, either with release canidates or beta packages.
+dotnet_diagnostic.NU5104.severity = silent
+
 # CA2227: Causes regressions when seeding data (unable to parse lists from JSON)
 # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2227
 dotnet_diagnostic.CA2227.severity = silent
