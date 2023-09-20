@@ -28,7 +28,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EngineBay.Core" Version="4.0.0" Condition="'$(Configuration)'=='Release'"/>
+    <PackageReference Include="EngineBay.Core" Version="4.0.0" />
     <PackageReference Include="Proto.OpenTelemetry" Version="1.1.0" />
     <PackageReference Include="OpenTelemetry.Contrib.Instrumentation.MassTransit" Version="1.0.0-beta2" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.3.2" />
@@ -49,8 +49,4 @@
     <None Include="../README.md" Pack="true" PackagePath="\" />
     <None Include="../LICENSE.txt" Pack="true" PackagePath="" />
 </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\core\EngineBay.Core\EngineBay.Core.csproj" Condition="'$(Configuration)'=='Debug'"/>
-  </ItemGroup>
 </Project>
