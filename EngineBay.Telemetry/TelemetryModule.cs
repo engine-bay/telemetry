@@ -5,10 +5,9 @@ namespace EngineBay.Telemetry
     using OpenTelemetry.Trace;
     using Proto.OpenTelemetry;
 
-    public class TelemetryModule : IModule
+    public class TelemetryModule : BaseModule
     {
-        /// <inheritdoc/>
-        public IServiceCollection RegisterModule(IServiceCollection services, IConfiguration configuration)
+        public override IServiceCollection RegisterModule(IServiceCollection services, IConfiguration configuration)
         {
 #pragma warning disable CS0618 //OpenTelemetryServicesExtensions.AddOpenTelemetryMetrics is marked as obsolete. Need to refactor this configuration to align to the new interface.
 
@@ -26,13 +25,7 @@ namespace EngineBay.Telemetry
             return services;
         }
 
-        /// <inheritdoc/>
-        public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
-        {
-            return endpoints;
-        }
-
-        public WebApplication AddMiddleware(WebApplication app)
+        public override WebApplication AddMiddleware(WebApplication app)
         {
             app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
