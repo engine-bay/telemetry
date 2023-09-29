@@ -27,8 +27,14 @@
     <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="$(Configuration)=='Debug'">
+    <ProjectReference Include="../../core/EngineBay.Core/EngineBay.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="$(Configuration)!='Debug'">
     <PackageReference Include="EngineBay.Core" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Proto.OpenTelemetry" Version="1.1.0" />
     <PackageReference Include="OpenTelemetry.Contrib.Instrumentation.MassTransit" Version="1.0.0-beta2" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.3.2" />
