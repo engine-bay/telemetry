@@ -14,7 +14,7 @@ This module will register services and middleware to expose telemetry and metric
 
 Registering this module is sufficient to enable telemetry. It will automatically scrape endpoints and expose metrics.
 
-## Registration
+### Registration
 
 See the [Demo API registration guide](https://github.com/engine-bay/demo-api).
 
