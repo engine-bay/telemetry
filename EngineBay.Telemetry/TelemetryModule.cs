@@ -9,18 +9,15 @@ namespace EngineBay.Telemetry
     {
         public override IServiceCollection RegisterModule(IServiceCollection services, IConfiguration configuration)
         {
-#pragma warning disable CS0618 //OpenTelemetryServicesExtensions.AddOpenTelemetryMetrics is marked as obsolete. Need to refactor this configuration to align to the new interface.
-
-            services.AddOpenTelemetryMetrics((builder) =>
-            {
-                builder
-                .AddProtoActorInstrumentation()
-                .AddAspNetCoreInstrumentation()
-                .AddHttpClientInstrumentation()
-                .AddPrometheusExporter();
-            });
-
-#pragma warning restore CS0618
+            services.AddOpenTelemetry()
+                .WithMetrics((builder) =>
+                {
+                    builder
+                    .AddProtoActorInstrumentation()
+                    .AddAspNetCoreInstrumentation()
+                    .AddHttpClientInstrumentation()
+                    .AddPrometheusExporter();
+                });
 
             return services;
         }
