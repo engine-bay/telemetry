@@ -3,20 +3,19 @@ namespace EngineBay.Telemetry
     using EngineBay.Core;
     using OpenTelemetry.Metrics;
     using OpenTelemetry.Trace;
-    using Proto.OpenTelemetry;
 
     public class TelemetryModule : BaseModule
     {
         public override IServiceCollection RegisterModule(IServiceCollection services, IConfiguration configuration)
         {
             services.AddOpenTelemetry()
-                .WithMetrics((builder) =>
+                .WithMetrics(metrics =>
                 {
-                    builder
-                    .AddProtoActorInstrumentation()
+                    metrics
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddPrometheusExporter();
+                    .AddPrometheusExporter()
+                    .AddConsoleExporter();
                 });
 
             return services;
