@@ -2,6 +2,7 @@ namespace EngineBay.Telemetry
 {
     using EngineBay.Core;
     using OpenTelemetry.Metrics;
+    using OpenTelemetry.Resources;
     using OpenTelemetry.Trace;
 
     public class TelemetryModule : BaseModule
@@ -14,7 +15,17 @@ namespace EngineBay.Telemetry
                     metrics
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddPrometheusExporter()
+                    .AddPrometheusExporter();
+
+                    // .AddConsoleExporter();
+                })
+                .WithTracing(tracing =>
+                {
+                    tracing.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(AppDomain.CurrentDomain.FriendlyName))
+                    .AddAspNetCoreInstrumentation()
+                    .AddHttpClientInstrumentation()
+                    .AddSource(EngineBayActivitySource.Name)
+                    .AddOtlpExporter()
                     .AddConsoleExporter();
                 });
 
